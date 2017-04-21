@@ -11,6 +11,7 @@ class Seller extends Model
      *
      * @var array
      */
+    
     protected $fillable = [
         'first_name','last_name','product_id'
     ];
