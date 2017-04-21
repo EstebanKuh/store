@@ -17,8 +17,11 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->float('price');
-            $table->text('description');
-            $table->integer('amount');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories');
+            $table->integer('amount')->unsigned();
             $table->integer('provider_id')->unsigned();
             $table->foreign('provider_id')
                 ->references('id')

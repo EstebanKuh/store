@@ -13,7 +13,7 @@ class Seller extends Model
      */
     
     protected $fillable = [
-        'first_name','last_name','product_id'
+        'first_name','last_name'
     ];
     
     public function products(){
