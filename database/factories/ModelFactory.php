@@ -12,41 +12,35 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
 
+$factory->define(App\Category::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'name' => $faker->name
     ];
 });
 
 $factory->define(App\Seller::class, function (Faker\Generator $faker) {
     return [
-        'first_name' => $faker->name,
+        'first_name' => $faker->firstName,
         'last_name' => $faker->lastName
     ];
 });
+
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'price' => $faker->randomFloat(2,0,1000),
-        'description' => $faker->text
+        'category_id' => $faker->text,
+        'amount' => $faker->numberBetween(1,1000),
+        'provider_id' => $faker->unique()->numberBetween(1,App\Provider::count())
     ];
 });
-$factory->define(App\Review::class, function (Faker\Generator $faker) {
+
+$factory->define(App\Provider::class, function (Faker\Generator $faker) {
     return [
-        'critic_name' => $faker->name,
-        'title' => $faker->title,
-        'body' => $faker->text,
-        'review_date' => $faker->date('Y-m-d'),
-    ];
-});
-$factory->define(App\Tag::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->slug,
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'phone_number' => $faker->phoneNumber
     ];
 });
     
