@@ -11,6 +11,15 @@ class ProvidersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $numOfProviders = 5;
+        
+        
+        $providers = factory(Provider::class,$numOfProviders)->create();
+        
+        foreach($providers as $provider){
+            factory(Product::class)
+                ->create()
+        }
+        
     }
 }
