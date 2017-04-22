@@ -22,7 +22,7 @@ class Product extends Model
     }
     
     public function sellers(){
-        return $this->belongsTo('App\Seller');
+        return $this->belongsToMany('App\Seller');
     }
     
     public function categories(){
