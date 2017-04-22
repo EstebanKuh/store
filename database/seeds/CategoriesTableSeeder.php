@@ -13,7 +13,6 @@ class CategoriesTableSeeder extends Seeder
     {
         $numOfCategories = 10;
         $numOfProviders = 15;
-        $numOfSellers = 3;
         
         factory(App\Category::class,$numOfCategories)->create();
             
@@ -27,19 +26,6 @@ class CategoriesTableSeeder extends Seeder
                     'provider_id' => $provider->id,
                     'category_id' => $category_id
                 ]);
-        }
-    
-    
-        factory(App\Seller::class,$numOfSellers)
-            ->create()
-            ->each(
-                function($seller){
-                    $seller->products()->sync(
-                        App\Product::all()->random(2)
-                    );
-                }
-            );
-        
-        
+        }        
     }
 }

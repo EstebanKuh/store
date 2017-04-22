@@ -11,6 +11,16 @@ class SellersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $numOfSellers = 3;        
+        factory(App\Seller::class,$numOfSellers)
+            ->create()
+            ->each(
+                function($seller){
+                    $seller->products()->sync(
+                        App\Product::all()->random(5)
+                    );
+                }
+            );
+        
     }
 }

@@ -13,7 +13,7 @@ class CreateProductSellerTable extends Migration
      */
    public function up()
     {
-        Schema::create('seller_product', function (Blueprint $table) {
+        Schema::create('product_seller', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')
@@ -34,6 +34,6 @@ class CreateProductSellerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seller_product');
+        Schema::dropIfExists('product_seller');
     }
 }
