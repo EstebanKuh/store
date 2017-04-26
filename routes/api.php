@@ -27,14 +27,12 @@ Route::delete('sellers/{id}','SellerController@destroy');
 
 Route::post('sellers/{seller_id}/products/{product_id}','SellerController@addSale');
 
-
 Route::get('providers','ProviderController@index');
 Route::get('providers/{id}','ProviderController@show');
 Route::post('providers','ProviderController@create');
 Route::put('providers/{id}','ProviderController@update');
 Route::patch('providers/{id}','ProviderController@edit');
 Route::delete('providers/{id}','ProviderController@destroy');
-
 
 Route::get('products','ProductController@index');
 Route::get('products/{id}','ProductController@show');
