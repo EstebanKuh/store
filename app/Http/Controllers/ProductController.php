@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+         return Response::json(Product::all());
     }
 
     /**
@@ -33,9 +35,12 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $attributes = $request->all();
+        $product = Product::create($attributes);
+        
+        return response("Product added", 200);
     }
 
     /**
@@ -46,7 +51,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return $product->with('category')->with('provider');
     }
 
     /**
@@ -57,7 +62,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        // = update
     }
 
     /**
@@ -67,9 +72,11 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $attributes = $request->all();
+        $product->update($attributes);
+        return response("Product updated", 201);
     }
 
     /**
@@ -80,6 +87,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return response("Product deleted", 200);
     }
 }

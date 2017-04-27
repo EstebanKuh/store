@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Seller;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreSellerRequest;
+use App\Http\Requests\UpdateSellerRequest;
 
 class SellerController extends Controller
 {
@@ -14,7 +16,7 @@ class SellerController extends Controller
      */
     public function index()
     {
-        //
+        return Response::json(Seller::all());
     }
 
     /**
@@ -33,9 +35,12 @@ class SellerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSellerRequest $request)
     {
-        //
+        $attributes = $request->all();
+        $seller = Seller::create($attributes);
+        
+        return response("Seller added", 200);
     }
 
     /**
@@ -46,7 +51,7 @@ class SellerController extends Controller
      */
     public function show(Seller $seller)
     {
-        //
+        return $seller;
     }
 
     /**
@@ -67,9 +72,12 @@ class SellerController extends Controller
      * @param  \App\Seller  $seller
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Seller $seller)
+    public function update(UpdateSellerRequest $request, Seller $seller)
     {
-        //
+        $attributes = $request->all();
+        $seller->update($attributes);
+        
+        return response("Seller updated", 201);
     }
 
     /**
@@ -80,6 +88,8 @@ class SellerController extends Controller
      */
     public function destroy(Seller $seller)
     {
-        //
+        $seller->delete();
+        
+        return response("Seller deleted", 200);
     }
 }

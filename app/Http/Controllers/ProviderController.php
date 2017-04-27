@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Provider;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProviderRequest;
+use App\Http\Requests\UpdateProviderRequest;
 
 class ProviderController extends Controller
 {
@@ -14,7 +16,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+         return Response::json(Provider::all());
     }
 
     /**
@@ -33,9 +35,12 @@ class ProviderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProviderRequest $request)
     {
-        //
+        $attributes = $request->all();
+        $product = Product::create($attributes);
+        
+        return response("Provider added", 200);
     }
 
     /**
@@ -46,7 +51,7 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
-        //
+        return $provider;
     }
 
     /**
@@ -67,9 +72,11 @@ class ProviderController extends Controller
      * @param  \App\Provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provider $provider)
+    public function update(UpdateProviderRequest $request, Provider $provider)
     {
-        //
+        $attributes = $request->all();
+        $provider->update($attributes);
+        return response("Provider updated", 201);
     }
 
     /**
@@ -80,6 +87,7 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
-        //
+        $provider->delete();
+        return response("Provider deleted", 200);
     }
 }
