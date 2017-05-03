@@ -28,4 +28,31 @@ class StoreSellerRequest extends FormRequest
             'last_name'  => 'required|max:255'
         ];
     }
+    
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    
+    public function messages()
+    {
+        return [
+            'first_name.required' => 'El :attribute es obligatorio.',
+            'last_name.required' => 'El :attribute es obligatorio.'
+        ];
+    }
+    
+     /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'first_name' => 'nombre del vendedor',
+            'last_name' => 'apellido del vendedor'
+        ];
+    }
 }

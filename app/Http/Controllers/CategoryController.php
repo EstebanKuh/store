@@ -38,7 +38,7 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $attributes = $request->all();
-        $category = Category::create($attributes);
+        Category::create($attributes);
         
         return response("Category added", 200);
     }

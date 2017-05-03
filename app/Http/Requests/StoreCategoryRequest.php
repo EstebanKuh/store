@@ -27,4 +27,28 @@ class StoreCategoryRequest extends FormRequest
             'name' => 'required|max:225'
         ];
     }
+    
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'El :attribute es obligatorio.'
+        ];
+    }
+    
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'name' => 'nombre de la categoria'
+        ];
+    }
 }

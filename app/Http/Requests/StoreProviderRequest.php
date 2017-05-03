@@ -29,4 +29,32 @@ class StoreProviderRequest extends FormRequest
             'phone_number' => 'required|max:255'
         ];
     }
+    
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'first_name.required' => 'El :attribute es obligatorio.',
+            'last_name.required' => 'El :attribute es obligatorio.',
+            'phone_number.required' => 'Añade el :attribute.'
+        ];
+    }
+    
+     /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'first_name' => 'nombre del proveedor',
+            'last_name' => 'apellido del proveedor',
+            'phone_number' => 'número de teléfono del proveedor'
+        ];
+    }
 }
